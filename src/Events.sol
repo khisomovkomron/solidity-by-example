@@ -12,7 +12,7 @@ pragma solidity ^0.8.19;
     event AnotherLog();
 
     function test() public{
-        emit Log(msg.sender, "Hello worls:);
+        emit Log(msg.sender, "Hello world");
         emit Log(msg.sender, "Hello EVM");
         emit AnotherLog();
     }
