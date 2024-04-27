@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 contract Enum{
     // enumerables and are useful to model choices and keep track of state
-    enums Status {
+    enums Status{
         Pending,
         Shipped,
         Accepted,

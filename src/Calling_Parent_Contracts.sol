@@ -17,7 +17,7 @@ contract A {
 
     }
     
-    functoon bar() public virtual {
+    function bar() public virtual {
         emit Log("A.bar called");
     }
 }
@@ -28,7 +28,7 @@ contract B is A {
         A.foo();
     }
 
-    funciton bar() public virtual override {
+    function bar() public virtual override {
         emit Log("B.bar called");
         super.bar();
     }
