@@ -42,7 +42,7 @@ contract TestMerkleProof is MerkleProof {
             hashes.push(keccak256(abi.encodePacked(transactions[i])));
         } 
 
-        uint256 n = transactions.lenght;
+        uint256 n = transactions.length;
         uint256 offset = 0;
 
         while (n > 0) {
@@ -56,7 +56,7 @@ contract TestMerkleProof is MerkleProof {
     }
 
     function getRoot() public view returns (bytes32) {
-        return hashes[hashes.lenght - 1];
+        return hashes[hashes.length - 1];
     }
 }
 

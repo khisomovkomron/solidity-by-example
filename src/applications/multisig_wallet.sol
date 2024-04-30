@@ -150,7 +150,7 @@ contract MultiSigWallet {
                 transaction.value,
                 transaction.data,
                 transaction.executed,
-                transaction, numConfirmations
+                transaction.numConfirmations
             );
         }
 }
