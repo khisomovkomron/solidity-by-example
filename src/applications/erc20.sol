@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.19;
 
+
+//  An ERC20 token contract keeps track of fungible tokens: any one token is exactly equal to any other token; 
+// no tokens have special rights or behavior associated with them. This makes ERC20 tokens useful for things like 
+// a medium of exchange currency, voting rights, staking, and more.
+
 /**
 * ERC20 tokens provide functionalities to:
 * - transfer tokens
