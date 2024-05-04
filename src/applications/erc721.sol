@@ -98,7 +98,33 @@ contract ERC721 is IERC721{
 
     function safeTransferFrom(address from, address to, uint256 id, bytes calldata data) external{
         transferFrom(from, to, id);
-        require(to.code.length == 0 || IERC721Receiver(to).onERC721Received(msg.sender, from, id, data) == IERC721Receiver.onERC721Received.selector, "Unsafe recipient";
+        require(to.code.length == 0 || IERC721Receiver(to).onERC721Received(msg.sender, from, id, data) == IERC721Receiver.onERC721Received.selector, "Unsafe recipient");
     }
 
+    function safeTransferFrom(address from, address to, uint256 id, bytes calldata data) external{
+        transferFrom(from, to, id);
+        require(to.code.length == 0 || IERC721Receiver(to).onERC721Received(msg.sender, from, id, data) == IERC721Receiver.onERC721Received.selector, "Unsafe recipient");
+    }    
+
+    function _mint(address to, uint256 id) internal {
+        require(to != address(0), "mint to zero address");
+        require(_ownerOf[id] == address(0), "already minted");
+
+        _balanceOf[to] ++;
+        _ownerOf[id] = to;
+
+        emit Transfer(address(0), to, id);
+    }
+
+    function _burn(uint256 id) internal {
+        address owner = _ownerOf[id];
+        require(owner != address(0), "not minted");
+
+        _balanceOf[owner] -= 1;
+
+        delete _ownerOf[id];
+        delete _approvals[id];
+
+        emit Transfer(owner, address(0), id);   
+    }
 }
