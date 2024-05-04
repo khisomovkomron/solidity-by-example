@@ -15,3 +15,12 @@ ERC1155 draws ideas from all of ERC20, ERC721, and ERC777.
     function setApprovalForAll(address operator, bool approved) external;
     function isApprovedForAll(address owner, address operator) external view returns (bool);
  }
+
+ contract ERC1155 is IERC1155{
+    // Events
+
+    mapping(address => mapping(uint256 => uint256)) public balanceOf;
+    mapping(address => mapping(address => bool)) public isApprovedForAll;
+
+    
+ }
