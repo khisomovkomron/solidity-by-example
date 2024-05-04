@@ -34,6 +34,7 @@ interface IERC721Receiver {
 }
 
 contract ERC721 is IERC721{
+    event Transfer(address indexed owner, address indexed spender, uint256 indexed id);
     event Approval(address indexed owner, address indexed spender, uint256 indexed id);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
@@ -80,6 +81,24 @@ contract ERC721 is IERC721{
         return (spender == owner || isApprovedForAll[owner][spender] || spender == _approvals[id]);
     }
 
+    function transferFrom(address from,address to, uint256 id) public {
+        require(from == _ownerOf[id], "from != owner");
+        require(to != address(0), "transfer to zero address");
 
+        require(_isApprovedOrOwner(from, msg.sender, id), "not authorized");
+
+        _balanceOf[from]--;
+        _balanceOf[to]++;
+        _ownerOf[id] = to;
+
+        delete _approvals[id];
+
+        emit Transfer(from, to, id);
+    }
+
+    function safeTransferFrom(address from, address to, uint256 id, bytes calldata data) external{
+        transferFrom(from, to, id);
+        require(to.code.length == 0 || IERC721Receiver(to).onERC721Received(msg.sender, from, id, data) == IERC721Receiver.onERC721Received.selector, "Unsafe recipient";
+    }
 
 }
