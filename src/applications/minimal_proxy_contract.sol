@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 contract MinimalProxy{
-    function cloneO(address target) external returns (address result) {
+    function clone(address target) external returns (address result) {
         bytes20 targetBytes = bytes20(target);
 
         assemly {
