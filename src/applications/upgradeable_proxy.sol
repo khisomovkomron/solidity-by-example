@@ -7,7 +7,6 @@ contract CounterV1 {
     function inc() external {
         count += 1;
     }
-/error
 }
 
 contract CounterV2 {
