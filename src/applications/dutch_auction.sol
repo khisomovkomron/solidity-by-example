@@ -17,13 +17,6 @@ contract DutchAuction {
     uint256 public immutable expiresAt;
     uint256 public immutable discountRate;
 
-    /**
-     * 
-     * @param _startingPrice 
-     * @param _discountRate 
-     * @param _nft 
-     * @param _nftId 
-     */
     constructor(
         uint256 _startingPrice,
         uint256 _discountRate,
