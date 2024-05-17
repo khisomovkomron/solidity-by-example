@@ -1,0 +1,31 @@
+Source of randomness 
+blockhash and block.timestamp are not reliable sources for randomness
+! Do not use blockhash and block.timestamp as source of randomness
+
+
+Delegatecall 
+Delegatecall is tricky to use and wrong usage or incorrect understanding can lead to devastating results
+1. Delegatecall preserves context (storge, caller, etc)
+2. storage layout must be the same for the contract calling delegatecall and the contract getting called
+- Use stateless library to prevent vulnaribilities 
+
+
+Self Destruct
+Contracts can be deleted from the blockchain by calling selfdestruct
+selfdestruct sends all remaining Ether stored in the contract to a designated address 
+        address payable addr = payable(address(etherGame));
+        selfdestruct(addr);
+
+Arithmetic Overflow and Underflow
+Solidity < 0.8
+Integers in Solidity overflow / underflow without any errors
+Solidity >= 0.
+Default behaviour of Solidity 0.8 for overflow / underflow is to throw an error.
+Preventative Techniques
+Use SafeMath to will prevent arithmetic overflow and underflow
+Solidity 0.8 defaults to throwing an error for overflow / underflow
+
+Denial of service
+There are many ways to attack a smart contract to make it unusable. If receiving contract does not have fallback function, sending contract will be broken
+Preventative Techniques
+One way to prevent this is to allow the users to withdraw their Ether instead of sending it.
